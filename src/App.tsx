@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Clicker from "./Clicker.tsx";
+import People from "./People.tsx";
 
 export default function App({
   clickersCount,
@@ -19,11 +20,6 @@ export default function App({
     sethasClicker(!hasClicker);
   };
 
-  const tempArray = [...Array(clickersCount)];
-  tempArray.map(() => {
-    console.log("value");
-  });
-
   return (
     <>
       {children}
@@ -34,11 +30,13 @@ export default function App({
       {hasClicker &&
         [...Array(clickersCount)].map((_, index) => (
           <Clicker
+            key={index}
             keyName={`count${index}`}
             color={`hsl(${Math.random() * 360}deg, 100%, 70%)`}
             increment={increment}
           />
         ))}
+      <People />
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export default function ({
   keyName,
@@ -13,7 +13,14 @@ export default function ({
     Number(localStorage.getItem(keyName)) || 0,
   );
 
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  console.log(buttonRef);
+
   useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.style.backgroundColor = "papayawhip";
+      buttonRef.current.style.color = "salmon";
+    }
     return () => {
       localStorage.removeItem(keyName);
     };
@@ -25,12 +32,14 @@ export default function ({
 
   const buttonClick = () => {
     setCount(count + 1);
-    increment()
+    increment();
   };
   return (
     <>
       <div style={{ color: color }}>Количество нажатий: {count}</div>
-      <button onClick={buttonClick}>Нажми меня</button>
+      <button ref={buttonRef} onClick={buttonClick}>
+        Нажми меня
+      </button>
     </>
   );
 }

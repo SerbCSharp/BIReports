@@ -5,6 +5,6 @@ import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <App clickersCount = { 5 }><h1>Всем привет</h1></App> 
+    <App clickersCount = { 5 }><h1>Number Clickers</h1></App> 
   </StrictMode>,
 );
