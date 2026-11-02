@@ -1,18 +1,15 @@
-import { useThree, extend, useFrame } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
-import * as THREE from "three";
-import { OrbitControls } from "three/examples/jsm/Addons.js";
 
 export default function App() {
-  extend({ OrbitControls });
-  const { camera, gl } = useThree();
   const cubeRef = useRef<THREE.Mesh>(null!);
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     cubeRef.current.rotation.y += delta;
   });
   return (
     <>
-      <orbitControls args={[camera, gl.domElement]} />
+      <OrbitControls />
       <directionalLight position={[1, 2, 3]} intensity={1.5} />
       <ambientLight intensity={0.5} />
       <mesh position-y={-2} rotation-x={-Math.PI * 0.5} scale={10}>
